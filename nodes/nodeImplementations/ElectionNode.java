@@ -12,6 +12,23 @@ public class ElectionNode extends sinalgo.nodes.Node {
 	 * }
 	 * */
 	
+	public ElectionNode right;
+	public ElectionNode left;
+	
+	public void addLeft(ElectionNode left) {
+		this.addConnectionTo(left);
+		left.addConnectionTo(this);
+		this.left = left;
+		left.right = this;
+	}
+	
+	public void addRight(ElectionNode right) {
+		this.addConnectionTo(right);
+		right.addConnectionTo(this);
+		this.right = right;
+		right.left = this;
+	}
+	
 	public boolean hadBroadcast;
 	
 	public void init() {

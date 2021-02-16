@@ -42,11 +42,6 @@ public class CustomGlobal extends AbstractCustomGlobal {
 		buildRing(15);
 	}
 
-	private void addEdge(Node from, Node to) {
-		from.addConnectionTo(to);
-		to.addConnectionTo(from);
-	}
-
 	private void buildRing(int numOfNodes) {
 		sinalgo.tools.Tools.removeAllNodes();
 
@@ -69,11 +64,11 @@ public class CustomGlobal extends AbstractCustomGlobal {
 			node.setPosition(posX, posY, 0);
 			node.finishInitializationWithDefaultModels(true);
 			if (i > 0)
-				addEdge(theNodes[i - 1], node);
+				node.addRight(theNodes[i-1]);
 			theNodes[i] = node;
 			angle += initAngle;
 		}
-		addEdge(theNodes[0], theNodes[numOfNodes - 1]);
+		theNodes[0].addRight(theNodes[numOfNodes - 1]);
 		// Repaint the GUI as we have added some nodes
 		sinalgo.tools.Tools.repaintGUI();
 	}
