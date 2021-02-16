@@ -17,8 +17,10 @@ public class InitNode extends ElectionNode {
 	}
 
 	public void initiate() {
-		ElectionMessage em = new ElectionMessage(TYPE.ASK, ID, l - 1);
-		System.out.println(this + " is sending now message " + em);
+		resultat = false;
+		l = 1;
+		n = 0;
+		ElectionMessage em = new ElectionMessage(TYPE.ASK, ID, l - 1, this);
 		broadcast(em);
 	}
 

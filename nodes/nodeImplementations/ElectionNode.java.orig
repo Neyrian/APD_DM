@@ -7,8 +7,16 @@ import projects.APD_DM.nodes.messages.ElectionMessage.TYPE;
 
 public class ElectionNode extends sinalgo.nodes.Node {
 	
+<<<<<<< HEAD
 	boolean resultat;
 	int l, n;
+=======
+	/* WalkerNode() { 
+	 *   // no constructor code, it breaks the way sinalgo builds the nodes. 
+	 *   // instead use the init() method 
+	 * }
+	 * */
+	
 	public ElectionNode right;
 	public ElectionNode left;
 	
@@ -26,10 +34,14 @@ public class ElectionNode extends sinalgo.nodes.Node {
 		right.left = this;
 	}
 	
+	public boolean hadBroadcast;
+>>>>>>> 98064344254808e460b06d1987b82a8c0a40c1a4
 	
 	public void init() {
 		setColor(Color.YELLOW);
-		
+		resultat = false;
+		l = 1;
+		n = 0;
 	}
 		
 	public String toString() {
@@ -37,51 +49,29 @@ public class ElectionNode extends sinalgo.nodes.Node {
 	}
 
 	public void handleMessages(sinalgo.nodes.messages.Inbox inbox) {
+		inbox.
 		while(inbox.hasNext()) {
 			sinalgo.nodes.messages.Message msg = inbox.next();
-			
 			if (msg instanceof ElectionMessage) {
 				ElectionMessage em = (ElectionMessage) msg;
-				
 				if (em.getType()  == TYPE.ASK) {
-					if (em.getId() == ID) {
+					if (em.getId() == ID)
 						resultat = true;
-						setColor(Color.RED);
-					} else if (em.getl()  > 0) {
-						if (em.getId() > ID) {
-							ElectionMessage m = new ElectionMessage(TYPE.ASK, em.getId(), em.getl() - 1, this);
-							if (em.sender.equals(left))
-								send(m, right);
-							else 
-								send(m, left);
-						}
+					else if (em.getl()  > 0) {
+						if (em.getId() > ID)
 							
-					} else if (em.getl() == 0) {
-						if (em.getId() > ID) {
-							ElectionMessage m = new ElectionMessage(TYPE.REP, em.getId(),0, this);
-							send(m, em.sender);
-						}
 					}
 				} else if (em.getType() == TYPE.REP) {
-					if (em.getId() != ID) {
-						ElectionMessage m = new ElectionMessage(TYPE.REP, em.getId(),0, this);
-						if (em.sender.equals(left))
-							send(m, right);
-						else 
-							send(m, left);
-					} else if (em.getId() == ID) {
-						n ++;
-						if (n == 2) {
-							n = 0;
-							l *= 2;
-							ElectionMessage m = new ElectionMessage(TYPE.ASK, ID, l - 1, this);
-							broadcast(m);
-						}
-					}
+					
 				} else {
 					System.exit(-1);
 				}
-
+	
+	
+				broadcast(flood);
+				setColor(Color.DARK_GRAY);
+				System.out.println(this + " received message " + flood + 
+								   " and broadcast it now");
 			}
 		}
 	}
