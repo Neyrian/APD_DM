@@ -1,24 +1,4 @@
 --  INONDATION  --
 
-    Each node that receives a message send this message 
-    to all its neighbors. 
-    this message is emitted by a (single) initiator (called InitNode)
-    it is transmitted through the network 
-       if the node already transmit to its neighbors, it will not
-       handle the message  
-    ... until it reaches its destination: the EndNode which stops it.
+TDOD A litle description
     
- Algorithm: (the message is called "the flood")
-
-    1: if InitNode then
-    2:     broadcast the flood to its neighbors
-
-	3: forever
-    4:     receive the flood from some node N
-    4:     if EndNode then
-    5:         do nothing! 
-    6:     else
-    7:    	   if hasn't broadcast it     
-    8: 			  broadcast the flood to its neighbors
-    9:	       else 
-    10:			  do nothing! 

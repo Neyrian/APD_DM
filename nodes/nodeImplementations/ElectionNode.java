@@ -3,20 +3,18 @@ package projects.APD_DM.nodes.nodeImplementations;
 import java.awt.Color;
 
 import projects.APD_DM.nodes.messages.ElectionMessage;
+import projects.APD_DM.nodes.messages.ElectionMessage.TYPE;
 
 public class ElectionNode extends sinalgo.nodes.Node {
 	
-	/* WalkerNode() { 
-	 *   // no constructor code, it breaks the way sinalgo builds the nodes. 
-	 *   // instead use the init() method 
-	 * }
-	 * */
-	
-	public boolean hadBroadcast;
+	boolean resultat;
+	int l, n;
 	
 	public void init() {
 		setColor(Color.YELLOW);
-		hadBroadcast = false;
+		resultat = false;
+		l = 1;
+		n = 0;
 	}
 		
 	public String toString() {
@@ -24,16 +22,25 @@ public class ElectionNode extends sinalgo.nodes.Node {
 	}
 
 	public void handleMessages(sinalgo.nodes.messages.Inbox inbox) {
+		inbox.
 		while(inbox.hasNext()) {
 			sinalgo.nodes.messages.Message msg = inbox.next();
-			if (msg instanceof ElectionMessage && !hadBroadcast) {
-				ElectionMessage flood = (ElectionMessage) msg;	
-				try {
-					Thread.sleep(200);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+			if (msg instanceof ElectionMessage) {
+				ElectionMessage em = (ElectionMessage) msg;
+				if (em.getType()  == TYPE.ASK) {
+					if (em.getId() == ID)
+						resultat = true;
+					else if (em.getl()  > 0) {
+						if (em.getId() > ID)
+							
+					}
+				} else if (em.getType() == TYPE.REP) {
+					
+				} else {
+					System.exit(-1);
 				}
-				hadBroadcast = true;
+	
+	
 				broadcast(flood);
 				setColor(Color.DARK_GRAY);
 				System.out.println(this + " received message " + flood + 

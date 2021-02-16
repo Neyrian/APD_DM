@@ -3,6 +3,7 @@ package projects.APD_DM.nodes.nodeImplementations;
 import java.awt.Color;
 
 import projects.APD_DM.nodes.messages.ElectionMessage;
+import projects.APD_DM.nodes.messages.ElectionMessage.TYPE;
 import projects.APD_DM.nodes.timers.InitTimer;
 
 /** the initiator node sends the message (the walker) */
@@ -16,10 +17,9 @@ public class InitNode extends ElectionNode {
 	}
 
 	public void initiate() {
-		ElectionMessage flood = new ElectionMessage();
-		System.out.println(this + " is sending now message " + flood);
-		broadcast(flood);
-		hadBroadcast = true;
+		ElectionMessage em = new ElectionMessage(TYPE.ASK, ID, l - 1);
+		System.out.println(this + " is sending now message " + em);
+		broadcast(em);
 	}
 
 	public String toString() {
