@@ -1,13 +1,11 @@
 package projects.APD_DM.nodes.nodeImplementations;
 
 import java.awt.Color;
-import java.util.Random;
 
-import projects.APD_DM.nodes.messages.FloodMessage;
-import sinalgo.nodes.Node;
+import projects.APD_DM.nodes.messages.ElectionMessage;
 
 public class ElectionNode extends sinalgo.nodes.Node {
-
+	
 	/* WalkerNode() { 
 	 *   // no constructor code, it breaks the way sinalgo builds the nodes. 
 	 *   // instead use the init() method 
@@ -28,8 +26,8 @@ public class ElectionNode extends sinalgo.nodes.Node {
 	public void handleMessages(sinalgo.nodes.messages.Inbox inbox) {
 		while(inbox.hasNext()) {
 			sinalgo.nodes.messages.Message msg = inbox.next();
-			if (msg instanceof FloodMessage && !hadBroadcast) {
-				FloodMessage flood = (FloodMessage) msg;	
+			if (msg instanceof ElectionMessage && !hadBroadcast) {
+				ElectionMessage flood = (ElectionMessage) msg;	
 				try {
 					Thread.sleep(200);
 				} catch (InterruptedException e) {

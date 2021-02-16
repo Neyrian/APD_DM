@@ -2,7 +2,7 @@ package projects.APD_DM.nodes.nodeImplementations;
 
 import java.awt.Color;
 
-import projects.APD_DM.nodes.messages.FloodMessage;
+import projects.APD_DM.nodes.messages.ElectionMessage;
 import projects.APD_DM.nodes.timers.InitTimer;
 
 /** the initiator node sends the message (the walker) */
@@ -16,7 +16,7 @@ public class InitNode extends ElectionNode {
 	}
 
 	public void initiate() {
-		FloodMessage flood = new FloodMessage();
+		ElectionMessage flood = new ElectionMessage();
 		System.out.println(this + " is sending now message " + flood);
 		broadcast(flood);
 		hadBroadcast = true;
